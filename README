@@ -1,0 +1,35 @@
+/**
+ * com_comments	Developed using Nooku Framework 0.7  
+ * @package		com_comments
+ * @copyright   Copyright (C) 2010 JooCode di Flavio Copes. All rights reserved.
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPLv2
+ */
+ 
+ This component can be used to enable users to add comments to any item you like.
+
+INSTALLATION
+
+Simply download the package and symlink from the Joomla installation
+
+/components: 
+	ln -s com_comments_directory/site com_blog
+/language/en-GB: 
+	ln -s com_comments_directory/language/en-GB.com_comments.ini en-GB.com_comments.ini
+
+USAGE
+
+Add a com_comments entry to the jos_components table and create the DB tables found in sql/
+
+You can add comments to any Nooku component simply putting a line of code in your view tmpl file.
+
+For example, this line puts in the page all the comments (and the comment entry form) referring to the post 1. 
+
+<? KFactory::tmp('site::com.comments.controller.comment')
+	->sort('comments_comment_id')
+	->direction('asc')
+	->target_type('post')
+	->target_id(1)
+	->return(KRequest::url().'#comments')
+	->limit(0)
+	->browse(); 
+?>
